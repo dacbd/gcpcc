@@ -39,4 +39,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/gcpcc:latest
+          tags: ghcr.io/dacbd/gcpcc:latest
