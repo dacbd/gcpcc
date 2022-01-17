@@ -29,6 +29,37 @@ func main() {
 	}
 	project := credentials.ProjectID
 	service, err := compute.New(oauth2.NewClient(oauth2.NoContext, credentials.TokenSource))
-	instances, err := service.Instances.List(project, "all").Do()
-	fmt.Println(len(instances.Items))
+	if err != nil {
+		log.Fatalln(err)
+	}
+	instanceCount := 0
+
+	zones, err := service.Zones.List(project).Do()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	for _, zone := range zones.Items {
+		instances, err := service.Instances.List(project, zone.Name).Do()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		instanceCount += len(instances.Items)
+	}
+
+	/*
+		regions, err := service.Regions.List(project).Do()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		for _, item := range regions.Items {
+			for _, zone := range item.Zones {
+				instances, err := service.Instances.List(project, zone).Do()
+				if err != nil {
+					log.Fatalln(err)
+				}
+				instanceCount += len(instances.Items)
+			}
+		}
+	*/
+	fmt.Println(instanceCount)
 }
