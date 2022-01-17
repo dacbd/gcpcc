@@ -24,7 +24,7 @@ jobs:
         with:
           artifacts: gcpcc-linux
           draft: true
-          token: ${{ secrets.GITUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
   docker-release:
     runs-on: ubuntu-latest
     steps:
