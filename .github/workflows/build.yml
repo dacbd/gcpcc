@@ -26,6 +26,7 @@ jobs:
           path: gcpcc
   docker:
     runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - uses: docker/login-action@v1
         with:
