@@ -1,10 +1,16 @@
+---
 name: 'gcpcc'
+author: 'Daniel Barnes'
 description: 'Output your GCP Compute Count, aka how many instances are in your project?'
+
+branding:
+  icon: 'check-square'
+  color: 'black'
 
 outputs:
   total:
-    description: 'Number compute instances'
+    description: 'Total number of compute instances'
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ghcr.io/dacbd/gcpcc:v1.0.0'
