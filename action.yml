@@ -1,7 +1,9 @@
 name: 'gcpcc'
 description: 'Output your GCP Compute Count, aka how many instances are in your project?'
 
-inputs:
+input:
+  temp:
+    required: false
 outputs:
   total:
     description: 'Number compute instances'
