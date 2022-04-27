@@ -9,25 +9,10 @@ on:
 
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-        with:
-          go-version: "1.17.x"
-      - run: |
-          go version
-          go mod download
-          CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o gcpcc .
-      - uses: actions/upload-artifact@v2
-        with:
-          name: gcpcc
-          path: gcpcc
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: docker/login-action@v1
         with:
           registry: ghcr.io
@@ -39,4 +24,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/dacbd/gcpcc:latest
+          tags: ghcr.io/dacbd/gcpcc:main
