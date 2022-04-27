@@ -19,13 +19,10 @@ func main() {
 	var credentials *google.Credentials
 	var err error
 	// get credentials
-	fmt.Println(len(credData))
 	if len(credData) != 0 {
 		credentials, err = google.CredentialsFromJSON(context.Background(), []byte(credData), compute.ComputeReadonlyScope)
-		fmt.Println("cred from json")
 	} else {
 		credentials, err = google.FindDefaultCredentials(context.Background(), compute.ComputeReadonlyScope)
-		fmt.Println("google find")
 	}
 	if err != nil {
 		log.Fatalln(err)
