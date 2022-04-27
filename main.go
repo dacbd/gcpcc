@@ -20,7 +20,7 @@ func main() {
 	var err error
 	// get credentials
 	fmt.Println(len(credData))
-	if len(credData) == 0 {
+	if len(credData) != 0 {
 		credentials, err = google.CredentialsFromJSON(context.Background(), []byte(credData), compute.ComputeReadonlyScope)
 		fmt.Println("cred from json")
 	} else {
