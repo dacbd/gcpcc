@@ -76,7 +76,7 @@ func main() {
 		}
 		instanceCount += len(instances.Items)
 	}
-	fmt.Println("::set-output name=total::%s", instanceCount)
+	fmt.Printf("::set-output name=total::%v", instanceCount)
 }
 
 // https://github.com/iterative/terraform-provider-iterative/blob/b9cd04a981df2b1426a67c58d506bdf9669eca5e/iterative/gcp/provider.go#L355-L370
