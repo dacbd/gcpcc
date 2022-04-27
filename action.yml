@@ -1,0 +1,10 @@
+name: 'gcpcc'
+description: 'Output your GCP Compute Count, aka how many instances are in your project?'
+
+outputs:
+  total:
+    description: 'Number compute instances'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
