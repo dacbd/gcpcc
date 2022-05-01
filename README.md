@@ -13,7 +13,7 @@ Currently none, authentication credentials are read from the environment.
 There are 3 recomended approaches:
 1. Pass GCP credentials JSON directly via `GOOGLE_APPLICATION_CREDENTIALS_DATA`
 1. The ["typical"](https://github.com/google-github-actions/auth#authenticating-via-service-account-key-json-1) approach of `GOOGLE_APPLICATION_CREDENTIALS` (path to JSON file)
-1. Using GitHub Actions OIDC with GCP [see here](https://github.com/google-github-actions/auth#authenticating-via-workload-identity-federation-1)
+1. Using [GitHub Actions OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-google-cloud-platform) with GCP [see here](https://github.com/google-github-actions/auth#authenticating-via-workload-identity-federation-1)
 
 #### Method 1
 ```yml
