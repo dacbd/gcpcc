@@ -6,12 +6,14 @@ Created to to prefrom GitHub Actions powered automatic checks (did someone leave
 ## Config
 Currently none, authentication credentials are read from the environment.
 
-There are 3 recomended approauches:
+## Authentication to GCP
+
+There are 3 recomended approaches:
 1. Pass GCP credentials JSON directly via `GOOGLE_APPLICATION_CREDENTIALS_DATA`
-1. The ["typical"](https://github.com/google-github-actions/auth#authenticating-via-service-account-key-json-1) approuch of `GOOGLE_APPLICATION_CREDENTIALS` (path to JSON file)
+1. The ["typical"](https://github.com/google-github-actions/auth#authenticating-via-service-account-key-json-1) approach of `GOOGLE_APPLICATION_CREDENTIALS` (path to JSON file)
 1. Using GitHub Actions OIDC with GCP [see here](https://github.com/google-github-actions/auth#authenticating-via-workload-identity-federation-1)
 
-#### Method 1 example
+#### Method 1
 ```yml
 # ...
 steps:
@@ -20,7 +22,7 @@ steps:
       GOOGLE_APPLICATION_CREDENTIALS_DATA: ${{ secrets.GCP_SA_KEY_JSON }}
 ```
 
-#### Method 2 example
+#### Method 2
 ```yml
 # ...
 steps:
@@ -30,7 +32,7 @@ steps:
   - uses: dacbd/gcpcc@v1
 ```
 
-#### Method 3 example
+#### Method 3
 ```yml
 # ...
 # Add "id-token" with the intended permissions.
@@ -48,7 +50,7 @@ steps:
 ## Outputs
 | outputs | value |
 | ------- | ----- |
-| total   | int(total number of compute instance) |
+| total   | `int` - total number of compute instance |
 
 ## Usage
 Basic example:
@@ -76,6 +78,5 @@ jobs:
         assignees: dacbd,some_github_username
         body: |
           Automatic check found `${{ steps.gcpcc.outputs.total }}` instance\s left on.
-        
 ```
 ## Permissions
