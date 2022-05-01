@@ -75,7 +75,7 @@ jobs:
     - uses: dacbd/gcpcc@v1
       id: gcpcc
     - uses: dacbd/create-issue-action@v1
-      if: steps.gcpcc.outputs.total !== 0
+      if: steps.gcpcc.outputs.total != 0
       with:
         token: ${{ github.token }}
         title: Instance left on in `${{ env.GCP_PROJECT }}`
