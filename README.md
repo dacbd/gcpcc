@@ -1,7 +1,9 @@
 # gcpcc
 Simple tool to print out the current number of compute instances on GCP
 
-Created to to prefrom GitHub Actions powered automatic checks (did someone leave a compute instance on that shouldn't be?)
+Created to to prefrom GitHub Actions powered automatic checks.
+
+Did someone leave a compute instance on that shouldn't be?
 
 ## Config
 Currently none, authentication credentials are read from the environment.
