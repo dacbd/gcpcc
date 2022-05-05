@@ -2,30 +2,11 @@ name: Release
 on:
   push:
     tags:
-    - 'v*'
+      - 'v**'
+      - '!v1'
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-        with:
-          go-version: "1.17.x"
-      - run: |
-          go version
-          go mod download
-          CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o gcpcc-linux .
-      - uses: actions/upload-artifact@v2
-        with:
-          name: gcpcc-linux
-          path: gcpcc-linux
-      - uses: ncipollo/release-action@v1
-        with:
-          artifacts: gcpcc-linux
-          draft: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-  docker-release:
+  docker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,8 +17,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/setup-buildx-action@v1
       - uses: docker/build-push-action@v2
+        env:
+          IMAGE_NAME: ghcr.io/dacbd/gcpcc
         with:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/dacbd/gcpcc:latest,ghcr.io/dacbd/gcpcc:${{ github.ref_name }}
+          tags: ${{ env.IMAGE_NAME }}:latest,${{ env.IMAGE_NAME }}:${{ github.ref_name }},${{ env.IMAGE_NAME }}:${{ github.sha }}
