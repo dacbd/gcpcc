@@ -13,4 +13,4 @@ outputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/dacbd/gcpcc:v1.0.0'
+  image: 'docker://ghcr.io/dacbd/gcpcc:v1.0.1'
