@@ -1,9 +1,6 @@
 name: Test Changes
 on:
   pull_request:
-  push:
-    branches:
-      - 'update-output-method'
 
 jobs:
   build:
