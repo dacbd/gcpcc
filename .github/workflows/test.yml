@@ -31,3 +31,8 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_JSON_KEY }}
       - uses: './'
+        id: gcpcc
+      - name: Show output
+        run: |
+          echo "instance count: ${{ steps.gcpcc.outputs.count }}"
+
