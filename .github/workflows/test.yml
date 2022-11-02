@@ -27,4 +27,7 @@ jobs:
       - name: Modify action.yml for test.
         run: |
           sed -i "s/  image:.*/  image: 'docker:\/\/ghcr.io\/dacbd\/gcpcc:${{ github.sha}}'/g" ./action.yml
+      - uses: google-github-actions/auth@v0
+        with:
+          credentials_json: ${{ secrets.GCP_SA_JSON_KEY }}
       - uses: './'
