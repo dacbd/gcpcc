@@ -34,5 +34,5 @@ jobs:
         id: gcpcc
       - name: Show output
         run: |
-          echo "instance count: ${{ steps.gcpcc.outputs.count }}"
+          echo "instance count: ${{ steps.gcpcc.outputs.total }}"
 
