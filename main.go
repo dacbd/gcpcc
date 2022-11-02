@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+	githubOutputFilename := os.Getenv("GITHUB_OUTPUT")
 	credData := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS_DATA")
 	var credentials *google.Credentials
 	var err error
@@ -73,7 +74,13 @@ func main() {
 		}
 		instanceCount += len(instances.Items)
 	}
-	fmt.Printf("::set-output name=total::%v", instanceCount)
+	if githubOutputFilename != "" {
+		file, _ := os.OpenFile(githubOutputFilename, os.O_APPEND|os.O_WRONLY, 0644)
+		defer file.Close()
+		file.WriteString(fmt.Sprintf("total=%v\n", instanceCount))
+	} else {
+		fmt.Printf("::set-output name=total::%v", instanceCount)
+	}
 }
 
 // https://github.com/iterative/terraform-provider-iterative/blob/b9cd04a981df2b1426a67c58d506bdf9669eca5e/iterative/gcp/provider.go#L355-L370
