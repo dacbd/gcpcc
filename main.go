@@ -77,7 +77,7 @@ func main() {
 	if githubOutputFilename != "" {
 		file, _ := os.OpenFile(githubOutputFilename, os.O_APPEND|os.O_WRONLY, 0644)
 		defer file.Close()
-		file.WriteString(fmt.Sprintln("total=", instanceCount))
+		file.WriteString(fmt.Sprintf("total=%v\n", instanceCount))
 	} else {
 		fmt.Printf("::set-output name=total::%v", instanceCount)
 	}
