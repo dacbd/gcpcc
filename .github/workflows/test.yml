@@ -30,4 +30,4 @@ jobs:
       - name: Modify action.yml for test.
         run: |
           sed --inplace "s/^\s{2}image:.*/  image: 'docker:\/\/ghcr.io/dacbd/gcpcc:${{ github.sha}}'" action.yml
-      - uses: '.'
+      - uses: './'
